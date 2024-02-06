@@ -16,12 +16,6 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-    //Todo Notes:
-    /*
-    Add database
-
-    Add "are you sure" for the delete event buttons
-     */
 
     //For eventList, the first parameter is eventDescription and second is eventName
     private ArrayList<String[]> eventList = new ArrayList<>();
