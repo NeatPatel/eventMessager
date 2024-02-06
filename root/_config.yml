@@ -1,5 +1,5 @@
 name: Event Messager
-theme: minima
+theme: jekyll-theme-minimal
 title: Event Messager Project
 email: neetp1@uci.edu
 baseurl: "event-messager"
