@@ -7,12 +7,16 @@ This project is an android based Java application that utilizes android studio, 
 1. **Setting Up Environment:**
    - Install Android Studio on your development machine.
    - Ensure JDK (Java Development Kit) is properly configured.
-   - Create a new Android project in Android Studio.
+   - Create a new Android project in Android Studio. At the create project menu, be sure to select Empty Views Activity:
+
+   ![](https://github.com/NeatPatel/eventMessager/blob/main/src/images/eventMessagerBlogImg1.png?raw=true)
 
 2. **Designing User Interface (UI):**
-   - Sketch out the UI layout for the reminder app, considering usability and aesthetics.
+   - The UI is designed using xml files for each activity, where an activity is a page of the application, similar to how html websites have different html files for each page site. Create three of these xml files:
+      - The first file is for the main page that will show the previously created events, and a FAB button (in the bottom right corner) for creating new events
+      - The second xml file 
    - Utilize Android Studio's layout editor to create XML layout files for each screen.
-   - Implement necessary UI elements such as text fields, buttons, date pickers, etc.
+   - 
 
 3. **Database Setup:**
    - Integrate SQLite3 as the local database for storing reminder data.
@@ -51,6 +55,10 @@ This project is an android based Java application that utilizes android studio, 
 
 **More information**
 
-For more information about this project or access to the actual repository for this application, visit [this link](https://github.com/NeatPatel/eventMessager)
+For more information about this project or access to the actual repository for this application, visit [the Event Messager repository](https://github.com/NeatPatel/eventMessager)
 
 ![](https://github.com/NeatPatel/eventMessager/blob/main/src/images/eventMessagerBlogImg1.png?raw=true)
+
+![](https://github.com/NeatPatel/eventMessager/blob/main/src/images/eventMessagerBlogImg2.png?raw=true)
+
+![](https://github.com/NeatPatel/eventMessager/blob/main/src/images/eventMessagerBlogImg3.png?raw=true)
