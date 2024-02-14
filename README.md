@@ -9,12 +9,13 @@ This project is an android based Java application that utilizes android studio, 
    - Ensure JDK (Java Development Kit) is properly configured.
    - Create a new Android project in Android Studio. At the create project menu, be sure to select Empty Views Activity:
 
-   ![](https://github.com/NeatPatel/eventMessager/blob/main/src/images/eventMessagerBlogImg1.png?raw=true)
+   ![](https://github.com/NeatPatel/eventMessager/blob/main/src/images/emptyViews.png?raw=true)
 
 2. **Designing User Interface (UI):**
    - The UI is designed using xml files for each activity, where an activity is a page of the application, similar to how html websites have different html files for each page site. Create three of these xml files:
-      - The first file is for the main page that will show the previously created events, and a FAB button (in the bottom right corner) for creating new events
-      - The second xml file 
+      - The first file is for the main page that will show the previously created events, and a FAB button (in the bottom right corner) for creating new events. Call this file activity_main.xml
+      - The second xml file will be for actually creating an event, prompting the user to fill out a form-like structured event with the option to customize the type of event they would like to create. This file will be called activity_create_event.xml
+      - The third xml will be for sending emails or notifications to others about this event, allowing the user to select "Done" when they have sent all the messages they desire. Call this file activity_email_clients.xml
    - Utilize Android Studio's layout editor to create XML layout files for each screen.
    - 
 
@@ -56,9 +57,3 @@ This project is an android based Java application that utilizes android studio, 
 **More information**
 
 For more information about this project or access to the actual repository for this application, visit [the Event Messager repository](https://github.com/NeatPatel/eventMessager)
-
-![](https://github.com/NeatPatel/eventMessager/blob/main/src/images/eventMessagerBlogImg1.png?raw=true)
-
-![](https://github.com/NeatPatel/eventMessager/blob/main/src/images/eventMessagerBlogImg2.png?raw=true)
-
-![](https://github.com/NeatPatel/eventMessager/blob/main/src/images/eventMessagerBlogImg3.png?raw=true)
