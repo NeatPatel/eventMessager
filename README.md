@@ -49,4 +49,8 @@ This project is an android based Java application that utilizes android studio, 
    - Package the application for deployment on the Google Play Store or any other distribution platform.
    - Follow platform-specific guidelines for app submission, including providing necessary metadata and assets.
 
+**More information**
+
+For more information about this project or access to the actual repository for this application, visit [this link](https://github.com/NeatPatel/eventMessager)
+
 ![](https://github.com/NeatPatel/eventMessager/blob/main/src/images/eventMessagerBlogImg1.png?raw=true)
