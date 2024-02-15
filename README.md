@@ -31,11 +31,7 @@ This project is an android based Java application that utilizes android studio, 
 
 - The `xml` file's contents are expressed as shown below:
 
-<details>
-   <summary>main_activity.xml code</summary>
-   
 ```xml
-
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -85,10 +81,7 @@ This project is an android based Java application that utilizes android studio, 
     </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-
 ```
-
-</details>
 
 
 - Notice the pattern of using "36dp" for margins. It is good practice to be consistent with margins through the application for even spacing between views.
@@ -97,10 +90,6 @@ This project is an android based Java application that utilizes android studio, 
 ![](https://github.com/NeatPatel/eventMessager/blob/main/src/images/createActivityLayout.png?raw=true)
 
 - The `xml` for this file should be as follows:
-
-<details>
-   <summary>activity_create_events.xml code</summary>
-   <br>
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -306,17 +295,11 @@ This project is an android based Java application that utilizes android studio, 
 </androidx.constraintlayout.widget.ConstraintLayout>
 ```
 
-</details>
-
 - Finally for the `activity_email_clients.xml` file, the layout itself should look like the following image:
 
 ![](https://github.com/NeatPatel/eventMessager/blob/main/src/images/emailClientsXml.png?raw=true)
 
 - The `xml` for `activity_email_clients.xml` should be as follows:
-
-<details>
-   <summary>activity_email_clients.xml code</summary>
-   <br>
 
    ```xml
    <?xml version="1.0" encoding="utf-8"?>
@@ -389,8 +372,6 @@ This project is an android based Java application that utilizes android studio, 
    </androidx.constraintlayout.widget.ConstraintLayout>
    ```
 
-</details>
-
 3. **Implementing Program Base Functionality:**
 - The functionality of the application itself will depend on three Java classes: `MainActivity.java`, `CreateEvent.java`, and `EmailClients.java`. Each of these classes corresponds an xml file that was create previously, such as how `activity_main.xml` corresponds to `MainActivity.java`.
    - `MainActivity.java` needs to display all events in the database and have a listener function (created in the xml) that watches for the Create Event FAB button being pressed, taking the user to the next activity via an Intent.
@@ -400,10 +381,6 @@ This project is an android based Java application that utilizes android studio, 
 ![](https://github.com/NeatPatel/eventMessager/blob/main/src/images/javaClassNames.png?raw=true)
 
 - Here is the code for the first class `MainActivity.java`:
-
-<details>
-   <summary>code for MainActivity.java</summary>
-   <br>
    
    ```java
 package com.example.eventmanager;
@@ -561,13 +538,7 @@ public class MainActivity extends AppCompatActivity {
 }
    ```
 
-</details>
-
 - The code for `CreateEvent.java` is as follows:
-
-<details>
-   <summary>code for CreateEvent.java</summary>
-   <br>
 
    ```java
 package com.example.eventmanager;
@@ -736,18 +707,12 @@ public class CreateEvent extends AppCompatActivity {
 }
    ```
 
-</details>
-
 - With these steps complete, the only parts remaining for the project are email plugins for communication and a database to store events
 
 4. **Adding Communication Options:**
 - For this step, `EmailClients.java` is needed in order to send out emails or texts to any recipients of the event that the user would like to notify.
 - `EmailClients.java` uses an Intent with a destination called "Send mail..." to send emails or other forms of messages to recipients that the user desires to send them to.
 - The code for `EmailClients.java` is as follows:
-
-<details>
-   <summary>code for EmailClients.java</summary>
-   <br>
 
    ```java
 package com.example.eventmanager;
@@ -827,15 +792,9 @@ public class EmailClients extends AppCompatActivity {
 }
 ```
 
-</details>
-
 5. **Database Setup:**
 - This Event app is a small scale event based reminder app that will mainly only require a small maintainable database to store the data for future use, so a perfect plugin to use for this project is sqlite. Sqlite in android studio requires specific class inherited and interface methods in order to execute so that its SqliteOpenHelper class can be extended and used properly.
 - To create a database, add a file called `EventDataBase.java`, and add the following code to it:
-
-<details>
-   <summary>code for EventDataBase.java</summary>
-   <br>
 
    ```java
 package com.example.eventmanager;
@@ -927,8 +886,6 @@ public class EventDataBase extends SQLiteOpenHelper {
     }
 }
    ```
-
-</details>
 
 6. **Documentation and Deployment:**
 - This is all of the content required for the implementation of the Event Manager application, and any further additions can be done so by modifying the program according to the way that it was written.
