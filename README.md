@@ -2,7 +2,7 @@
 # Event Messager Project Blog
 This project is an android based Java application that utilizes android studio, email plugins, and sqlite3 as the database to hold reminders for later. The project itself is a reminder app that can be used to create events that can be sent to anyone via email, text, whatsapp, copy paste, or any other form of text communication available as an app on one's phone. 
 
-### Steps:
+### Steps to Create this App:
 
 1. **Setting Up Environment:**
 - Install Android Studio on your development machine.
@@ -390,39 +390,546 @@ This project is an android based Java application that utilizes android studio, 
 </details>
 
 3. **Implementing Program Base Functionality:**
-- Develop Java classes to handle reminder creation, editing, deletion, and retrieval.
-- Implement logic to interact with the SQLite database, including CRUD (Create, Read, Update, Delete) operations.
-- Integrate date and time pickers to set reminder schedules.
+- The functionality of the application itself will depend on three Java classes: `MainActivity.java`, `CreateEvent.java`, and `EmailClients.java`. Each of these classes corresponds an xml file that was create previously, such as how `activity_main.xml` corresponds to `MainActivity.java`.
+   - `MainActivity.java` needs to display all events in the database and have a listener function (created in the xml) that watches for the Create Event FAB button being pressed, taking the user to the next activity via an Intent.
+   - `CreateEvent.java` is the second class (which `MainActivity.java` will redirect to after pressing FAB) and consists of a lot of views, with each component collecting data or showing previews to the user. The only way to create a new event is if all of the required fields have been filled out, such as the "Event Name" and "Event Description" for custom events. After creating an event, an Intent will be used to redirect the user to the third class' activity.
+   - `EmailClients.java` is the third class and its function is to send out emails/texts or any other form of communication about the event that the user has just created. More information on how this part of the program is constructed is going to be detailed in step 4.
+
+![](https://github.com/NeatPatel/eventMessager/blob/main/src/images/javaClassNames.png?raw=true)
+
+- Here is the code for the first class `MainActivity.java`:
+
+<details>
+   <summary>code for MainActivity.java</summary>
+   <br>
+   
+   ```java
+package com.example.eventmanager;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import java.util.ArrayList;
+
+public class MainActivity extends AppCompatActivity {
+
+    //For eventList, the first parameter is eventDescription and second is eventName
+    private ArrayList<String[]> eventList = new ArrayList<>();
+    final private EventDataBase db = new EventDataBase(MainActivity.this);
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        initialize();
+
+        handleViews();
+    }
+
+    public void initialize() {
+        eventList = db.getAllEvents();
+    }
+
+    public void handleViews() {
+        for (int i = 0; i < eventList.size(); i++) {
+            //Take event list and add CardViews for every item in eventList
+            LinearLayout cardLayout = findViewById(R.id.card_layout);
+            CardView cardView = new CardView(this);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            if (i > 0) {
+                params.topMargin = 36;
+            } else {
+                params.topMargin = 0;
+            }
+            cardView.setLayoutParams(params);
+
+            LinearLayout innerCardView = new LinearLayout(this);
+            innerCardView.setOrientation(LinearLayout.VERTICAL);
+            params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            innerCardView.setLayoutParams(params);
+
+            LinearLayout innerTitleLayout = new LinearLayout(this);
+            innerTitleLayout.setOrientation(LinearLayout.HORIZONTAL);
+            params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            innerTitleLayout.setLayoutParams(params);
+
+            createView(innerCardView, innerTitleLayout, eventList.get(i));
+            cardView.addView(innerCardView);
+            cardLayout.addView(cardView);
+        }
+
+        checkEmptyList();
+    }
+
+    public void checkEmptyList() {
+        if(eventList.size() == 0) {
+            LinearLayout cardLayout = findViewById(R.id.card_layout);
+            TextView noEventsYet = new TextView(this);
+            String noEventsText = "There are no events yet";
+            noEventsYet.setText(noEventsText);
+            noEventsYet.setTextSize(20);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            params.topMargin = 100;
+            noEventsYet.setLayoutParams(params);
+            cardLayout.addView(noEventsYet);
+        }
+    }
+
+    public void createEventClicked(View v) {
+        //Run the create event activity
+
+        Intent createEvent = new Intent(MainActivity.this, CreateEvent.class);
+        Bundle bundle = new Bundle();
+        for (int i = 0; i < eventList.size(); i++) {
+            bundle.putStringArray("KEY_eventList_" + i, eventList.get(i));
+        }
+        bundle.putInt("KEY_eventList_size", eventList.size());
+        createEvent.putExtras(bundle);
+        startActivity(createEvent);
+    }
+
+    public void createView(LinearLayout innerCardLayout, LinearLayout innerTitleLayout, String[] event) {
+        //Create a Card displaying event name and description/items
+
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+
+        TextView eventDescription = new TextView(this);
+
+        TextView eventName = new TextView(this);
+        String message = "Event: " + event[1];
+        eventName.setText(message);
+        eventName.setTextSize(24);
+        params.weight = 0.9f;
+        eventName.setLayoutParams(params);
+
+        params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        message = "Event Description:\n" + event[0];
+        eventDescription.setText(message);
+        eventDescription.setTextSize(14);
+        params.topMargin = 10;
+        eventDescription.setLayoutParams(params);
+
+        message = "Delete";
+        Button delButton = new Button(this);
+        delButton.setText(message);
+        delButton.setTextSize(14);
+        delButton.setOnClickListener(this::deleteView);
+        params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        params.weight = 0.1f;
+        delButton.setLayoutParams(params);
+
+        innerTitleLayout.addView(eventName);
+        innerTitleLayout.addView(delButton);
+        innerCardLayout.addView(innerTitleLayout);
+        innerCardLayout.addView(eventDescription);
+    }
+
+    public void deleteView(View v) {
+        DialogInterface.OnClickListener dialogClickListener = (dialog, which) -> {
+            if (which == DialogInterface.BUTTON_POSITIVE) {
+                LinearLayout cardLayout = findViewById(R.id.card_layout);
+                for (int i = 0; i < cardLayout.getChildCount(); i++) {
+                    if (cardLayout.getChildAt(i) == v.getParent().getParent().getParent()) {
+                        if (db.deleteOne(eventList.get(i)[1], eventList.get(i)[0])) {
+                            eventList.remove(i);
+                            cardLayout.removeView(cardLayout.getChildAt(i));
+                        }
+                        break;
+                    }
+                }
+
+                checkEmptyList();
+            }
+        };
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+        builder.setMessage("Are you sure you want to delete this event?").setPositiveButton("Delete", dialogClickListener)
+                .setNegativeButton("Cancel", dialogClickListener).show();
+    }
+}
+   ```
+
+</details>
+
+- The code for `CreateEvent.java` is as follows:
+
+<details>
+   <summary>code for CreateEvent.java</summary>
+   <br>
+
+   ```java
+package com.example.eventmanager;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
+public class CreateEvent extends AppCompatActivity {
+
+    //For eventList, the first parameter is eventDescription and second is eventName
+    private ArrayList<String[]> eventList = new ArrayList<>();
+    final private EventDataBase db = new EventDataBase(CreateEvent.this);
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_create_event);
+        LinearLayout customEventLayout = findViewById(R.id.custom_event);
+        customEventLayout.setVisibility(View.GONE);
+
+        initialize();
+    }
+
+    public void initialize() {
+        eventList = db.getAllEvents();
+    }
+
+    public void customEvent(View v) {
+        RadioButton customEventRadio = findViewById(R.id.custom_event_radio);
+        LinearLayout customEventLayout = findViewById(R.id.custom_event);
+        LinearLayout regularEventLayout = findViewById(R.id.regular_event);
+
+        if(customEventRadio.isChecked()) {
+            customEventLayout.setVisibility(View.VISIBLE);
+            regularEventLayout.setVisibility(View.GONE);
+        } else {
+            customEventLayout.setVisibility(View.GONE);
+            regularEventLayout.setVisibility(View.VISIBLE);
+        }
+    }
+
+    public void submitEvent(View v) {
+        RadioButton customEventRadio = findViewById(R.id.custom_event_radio);
+        if(customEventRadio.isChecked()) {
+
+            EditText eventDescription = findViewById(R.id.event_description_multi);
+            EditText eventName = findViewById(R.id.event_name);
+            String eventNameText = String.valueOf(eventName.getText());
+            String eventDescriptionText = String.valueOf(eventDescription.getText());
+
+            if(!eventDescriptionText.equals("") && !eventNameText.equals("") && isUnique(eventNameText, eventDescriptionText)) {
+                Intent emailClients = new Intent(CreateEvent.this, EmailClients.class);
+                Bundle bundle = new Bundle();
+                String[] newEvent = {eventDescriptionText, eventNameText};
+                if(db.addOne(eventNameText, eventDescriptionText)) {
+                    eventList.add(newEvent);
+                }
+
+                for(int i = 0; i < eventList.size(); i++) {
+                    bundle.putStringArray("KEY_eventList_" + i, eventList.get(i));
+                }
+
+                bundle.putInt("KEY_eventList_size", eventList.size());
+                bundle.putStringArray("KEY_email_event", eventList.get(eventList.size() - 1));
+                emailClients.putExtras(bundle);
+                startActivity(emailClients);
+            } else {
+                Toast.makeText(this, "Please type UNIQUE event Name and Description", Toast.LENGTH_SHORT).show();
+              }
+        } else {
+            EditText eventDescription = findViewById(R.id.event_description_multi_regular);
+            EditText eventName = findViewById(R.id.event_name);
+            EditText eventDate = findViewById(R.id.event_day);
+            String eventNameText = String.valueOf(eventName.getText());
+            String eventDescriptionText = String.valueOf(eventDescription.getText());
+            String eventDateText = String.valueOf(eventDate.getText());
+
+            String message = eventDescriptionText + "\nDate: " + eventDateText;
+
+            if(!eventDescriptionText.equals("") && !eventNameText.equals("") && !eventDateText.equals("") && isUnique(eventNameText, message)) {
+                //Intent mainActivity = new Intent(CreateEvent.this, MainActivity.class);
+
+                Intent emailClients = new Intent(CreateEvent.this, EmailClients.class);
+                Bundle bundle = new Bundle();
+                String[] newEvent = {message, eventNameText};
+                if (db.addOne(eventNameText, eventDescriptionText)) {
+                    eventList.add(newEvent);
+                }
+
+                for(int i = 0; i < eventList.size(); i++) {
+                    bundle.putStringArray("KEY_eventList_" + i, eventList.get(i));
+                }
+
+                bundle.putInt("KEY_eventList_size", eventList.size());
+                bundle.putStringArray("KEY_email_event", eventList.get(eventList.size() - 1));
+                emailClients.putExtras(bundle);
+                startActivity(emailClients);
+        } else {
+                Toast.makeText(this, "Please type UNIQUE event Name, Date, and Description", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    public boolean isUnique(String eventName, String eventDescription) {
+        String[] checkEvent = {eventDescription, eventName};
+        for(int i = 0; i < eventList.size(); i++) {
+            if(Arrays.equals(checkEvent, eventList.get(i))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public void previewEvent(View v) {
+        RadioButton customEventRadio = findViewById(R.id.custom_event_radio);
+
+        if(customEventRadio.isChecked()) {
+            EditText eventDescription = findViewById(R.id.event_description_multi);
+            String eventDescriptionText = String.valueOf(eventDescription.getText());
+            TextView tempText = findViewById(R.id.event_preview);
+
+            if(!eventDescriptionText.equals("")) {
+                tempText.setText(eventDescriptionText);
+            } else {
+                Toast.makeText(this, "Please type event Description", Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            EditText eventDescription = findViewById(R.id.event_description_multi_regular);
+            EditText eventDate = findViewById(R.id.event_day);
+            String eventDescriptionText = String.valueOf(eventDescription.getText());
+            String eventDateText = String.valueOf(eventDate.getText());
+            TextView tempText = findViewById(R.id.event_preview);
+
+            if(!eventDescriptionText.equals("") && !eventDateText.equals("")) {
+                String message = eventDescriptionText + "\nDate: " + eventDateText;
+                tempText.setText(message);
+            } else {
+                Toast.makeText(this, "Please type event Description and Date", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    public void cancelCreateEvent(View v) {
+        Intent mainActivity = new Intent(CreateEvent.this, MainActivity.class);
+        Bundle bundle = new Bundle();
+
+        for(int i = 0; i < eventList.size(); i++) {
+            bundle.putStringArray("KEY_eventList_" + i, eventList.get(i));
+        }
+
+        bundle.putInt("KEY_eventList_size", eventList.size());
+        mainActivity.putExtras(bundle);
+        startActivity(mainActivity);
+    }
+}
+   ```
+
+</details>
+
+- With these steps complete, the only parts remaining for the project are email plugins for communication and a database to store events
 
 4. **Adding Communication Options:**
-- Integrate email plugins to allow users to send reminders via email.
-- Implement functionality to send reminders via text messages (SMS), WhatsApp, or any other text communication app available on the device.
-- Enable copying reminder details to the device clipboard for easy sharing through other apps.
+- For this step, `EmailClients.java` is needed in order to send out emails or texts to any recipients of the event that the user would like to notify.
+- `EmailClients.java` uses an Intent with a destination called "Send mail..." to send emails or other forms of messages to recipients that the user desires to send them to.
+- The code for `EmailClients.java` is as follows:
+
+<details>
+   <summary>code for EmailClients.java</summary>
+   <br>
+
+   ```java
+package com.example.eventmanager;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import java.util.ArrayList;
+
+public class EmailClients extends AppCompatActivity {
+
+    private ArrayList<String[]> eventList = new ArrayList<>();
+    final private EventDataBase db = new EventDataBase(EmailClients.this);
+    private String[] emailEvent = new String[]{};
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_email_clients);
+
+        initialize();
+    }
+
+    public void initialize() {
+        if(getIntent() != null) {
+            Intent contentReceived = getIntent();
+            Bundle bundle = contentReceived.getExtras();
+
+            if(bundle != null) {
+                emailEvent = bundle.getStringArray("KEY_email_event");
+            }
+        }
+        eventList = db.getAllEvents();
+    }
+
+    public void sendEmail(View v) {
+        EditText emailBox = findViewById(R.id.manyMailBox);
+
+        if(!String.valueOf(emailBox.getText()).equals("")) {
+            Intent emailIntent = new Intent(Intent.ACTION_SEND);
+            emailIntent.setType("text/plain");
+
+            String eventName = emailEvent[1];
+            String eventDescription = emailEvent[0];
+            String[] emails = String.valueOf(emailBox.getText()).split(",", 0);
+
+            emailIntent.putExtra(Intent.EXTRA_EMAIL, emails);
+            emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Event Email Notification");
+            emailIntent.putExtra(Intent.EXTRA_TEXT, "Hello there!\nYou are being notified about the following Event: " + eventName + "\nThis event has the following description:\n" + eventDescription);
+
+            try {
+                startActivity(Intent.createChooser(emailIntent, "Send mail..."));
+            } catch (android.content.ActivityNotFoundException ex) {
+                Toast.makeText(this, "There is no email client installed.", Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            Toast.makeText(this, "Please enter at least one email address", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void noEmails(View v) {
+        Intent mainActivity = new Intent(EmailClients.this, MainActivity.class);
+        Bundle bundle = new Bundle();
+
+        for(int i = 0; i < eventList.size(); i++) {
+            bundle.putStringArray("KEY_eventList_" + i, eventList.get(i));
+        }
+
+        bundle.putInt("KEY_eventList_size", eventList.size());
+        mainActivity.putExtras(bundle);
+        startActivity(mainActivity);
+    }
+}
+```
+
+</details>
 
 5. **Database Setup:**
-- Integrate SQLite3 as the local database for storing reminder data.
-- Define the database schema, including tables for reminders and any related information.
-- Implement SQLiteOpenHelper class to manage database creation, version management, and access.
+- This Event app is a small scale event based reminder app that will mainly only require a small maintainable database to store the data for future use, so a perfect plugin to use for this project is sqlite. Sqlite in android studio requires specific class inherited and interface methods in order to execute so that its SqliteOpenHelper class can be extended and used properly.
+- To create a database, add a file called `EventDataBase.java`, and add the following code to it:
 
-6. **Testing and Debugging:**
-- Test the application on various Android devices and screen sizes to ensure compatibility.
-- Perform unit testing for individual components and functionality.
-- Utilize Android Studio's debugging tools to identify and fix any issues.
+<details>
+   <summary>code for EventDataBase.java</summary>
+   <br>
 
-7. **User Experience Enhancements:**
-- Implement features to enhance user experience, such as notifications for upcoming reminders.
-- Include options for customizing reminder preferences, such as sound alerts or recurring reminders.
-- Ensure smooth navigation and intuitive interactions throughout the app.
+   ```java
+package com.example.eventmanager;
 
-8. **Optimization and Refinement:**
-- Optimize code for performance and efficiency, considering factors like memory usage and battery consumption.
-- Refine UI elements based on user feedback and usability testing.
-- Continuously update and improve the app based on user suggestions and technological advancements.
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 
-9. **Documentation and Deployment:**
-- Create comprehensive documentation covering app functionality, usage instructions, and technical details.
-- Package the application for deployment on the Google Play Store or any other distribution platform.
-- Follow platform-specific guidelines for app submission, including providing necessary metadata and assets.
+import androidx.annotation.Nullable;
+
+import java.util.ArrayList;
+
+public class EventDataBase extends SQLiteOpenHelper {
+
+    public static final String TABLE_NAME = "events";
+    public static final String COLUMN_EVENT_NAME = "EVENT_NAME";
+    public static final String COLUMN_EVENT_DESC = "EVENT_DESC";
+
+    //Constructor for superclass SQLiteOpenHelper
+    public EventDataBase(@Nullable Context context) {
+        super(context, "events.db", null, 1);
+    }
+
+    //This method is executed the first time a database is called in program for initialization
+    @Override
+    public void onCreate(SQLiteDatabase db) {
+        String createTableStatement = "CREATE TABLE " + TABLE_NAME + " (" + COLUMN_EVENT_NAME + " TEXT NOT NULL, " + COLUMN_EVENT_DESC + " TEXT NOT NULL, UNIQUE (" + COLUMN_EVENT_NAME + ", " + COLUMN_EVENT_DESC + "))";
+
+        db.execSQL(createTableStatement);
+    }
+
+    //This method is called every time the version number changes
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+
+    }
+
+    public boolean addOne(String eventName, String eventDesc) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+
+        cv.put(COLUMN_EVENT_NAME, eventName);
+        cv.put(COLUMN_EVENT_DESC, eventDesc);
+
+        long insert = db.insert(TABLE_NAME, null, cv);
+
+        db.close();
+
+        return insert != -1;
+    }
+
+    public boolean deleteOne(String eventName, String eventDesc) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        //DELETE FROM TABLE_NAME WHERE COLUMN_EVENT_NAME = 'eventName' AND COLUMN_EVENT_DESC = 'eventDesc';
+        String queryString = "DELETE FROM " + TABLE_NAME + " WHERE " + COLUMN_EVENT_NAME + " = \"" + eventName + "\" AND " + COLUMN_EVENT_DESC + " = \"" + eventDesc + "\"";
+
+        Cursor cursor = db.rawQuery(queryString, null);
+
+        boolean resultBoolean = !cursor.moveToFirst();
+        cursor.close();
+        db.close();
+        return resultBoolean;
+    }
+
+    public ArrayList<String[]> getAllEvents() {
+        ArrayList<String[]> events = new ArrayList<>();
+
+        String queryString = "SELECT * FROM " + TABLE_NAME;
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery(queryString, null);
+
+        if(cursor.moveToFirst()) {
+            do {
+                String eventName = cursor.getString(0);
+                String eventDesc = cursor.getString(1);
+
+                String[] newEvent = {eventDesc, eventName};
+                events.add(newEvent);
+            } while(cursor.moveToNext());
+        }
+
+        //Close both cursor and database once the connection is complete
+        cursor.close();
+        db.close();
+        return events;
+    }
+}
+   ```
+
+</details>
+
+6. **Documentation and Deployment:**
+- This is all of the content required for the implementation of the Event Manager application, and any further additions can be done so by modifying the program according to the way that it was written.
 
 ### More information
 
