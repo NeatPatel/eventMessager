@@ -31,57 +31,62 @@ This project is an android based Java application that utilizes android studio, 
 
 - The `xml` file's contents are expressed as shown below:
 
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:screenOrientation="portrait"
-    tools:context=".MainActivity">
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton"
-        android:layout_width="wrap_content"
-        android:layout_height="109dp"
-        android:layout_marginEnd="48dp"
-        android:layout_marginBottom="48dp"
-        android:clickable="true"
-        android:contentDescription="@string/event_text"
-        android:focusable="true"
-        android:onClick="createEventClicked"
-        app:fabCustomSize="60dp"
-        app:fabSize="auto"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:maxImageSize="50dp"
-        app:shapeAppearanceOverlay="@style/fab_circle"
-        app:srcCompat="@android:drawable/ic_input_add" />
-
-    <ScrollView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:contentDescription="@string/first_fragment_label"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
-
-        <LinearLayout
-            android:id="@+id/card_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="36dp"
-            android:layout_marginTop="100dp"
-            android:layout_marginEnd="36dp"
-            android:orientation="vertical" />
-    </ScrollView>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
-```
+<details>
+   <summary>main_activity.xml code</summary>
+   <br>
+   
+   ```xml
+   <?xml version="1.0" encoding="utf-8"?>
+   <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+       xmlns:app="http://schemas.android.com/apk/res-auto"
+       xmlns:tools="http://schemas.android.com/tools"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:screenOrientation="portrait"
+       tools:context=".MainActivity">
+   
+       <com.google.android.material.floatingactionbutton.FloatingActionButton
+           android:id="@+id/floatingActionButton"
+           android:layout_width="wrap_content"
+           android:layout_height="109dp"
+           android:layout_marginEnd="48dp"
+           android:layout_marginBottom="48dp"
+           android:clickable="true"
+           android:contentDescription="@string/event_text"
+           android:focusable="true"
+           android:onClick="createEventClicked"
+           app:fabCustomSize="60dp"
+           app:fabSize="auto"
+           app:layout_constraintBottom_toBottomOf="parent"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:maxImageSize="50dp"
+           app:shapeAppearanceOverlay="@style/fab_circle"
+           app:srcCompat="@android:drawable/ic_input_add" />
+   
+       <ScrollView
+           android:layout_width="0dp"
+           android:layout_height="0dp"
+           android:contentDescription="@string/first_fragment_label"
+           app:layout_constraintBottom_toBottomOf="parent"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintHorizontal_bias="0.0"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintTop_toTopOf="parent"
+           app:layout_constraintVertical_bias="0.0">
+   
+           <LinearLayout
+               android:id="@+id/card_layout"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginStart="36dp"
+               android:layout_marginTop="100dp"
+               android:layout_marginEnd="36dp"
+               android:orientation="vertical" />
+       </ScrollView>
+   
+   </androidx.constraintlayout.widget.ConstraintLayout>
+   ```
+</details>
 
 - Notice the pattern of using "36dp" for margins. It is good practice to be consistent with margins through the application for even spacing between views.
 - For the `activity_create_events.xml` file, add views (where views are items in the application that can be interacted with by the users) that match the following image:
@@ -90,209 +95,214 @@ This project is an android based Java application that utilizes android studio, 
 
 - The `xml` for this file should be as follows:
 
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:screenOrientation="portrait"
-    tools:context=".CreateEvent">
+<details>
+   <summary>activity_create_events.xml code</summary>
+   <br>
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:visibility="visible"
-            tools:visibility="visible">
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputLayout"
-                android:layout_width="335dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="36dp"
-                android:layout_marginTop="120dp">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/event_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="#ffffff"
-                    android:hint="@string/new_event_input_name_text"
-                    android:inputType="text"
-                    android:maxLines="1"
-                    android:overScrollMode="always"
-                    android:scrollHorizontally="true"
-                    android:textSize="24sp" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <RadioGroup
-                android:layout_width="wrap_content"
-                android:layout_height="68dp"
-                android:layout_marginStart="36dp"
-                android:layout_marginTop="36dp"
-                android:orientation="horizontal">
-
-                <RadioButton
-                    android:id="@+id/regular_event_radio"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:checked="true"
-                    android:onClick="customEvent"
-                    android:text="@string/regular_event" />
-
-                <RadioButton
-                    android:id="@+id/custom_event_radio"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:onClick="customEvent"
-                    android:text="@string/custom_event" />
-
-            </RadioGroup>
-
-            <LinearLayout
-                android:id="@+id/regular_event"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/textView4"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="36dp"
-                    android:layout_marginTop="36dp"
-                    android:layout_marginEnd="36dp"
-                    android:text="@string/regular_event_description_text" />
-
-                <EditText
-                    android:id="@+id/event_description_multi_regular"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="36dp"
-                    android:layout_marginEnd="36dp"
-                    android:autofillHints="@string/event_description_custom"
-                    android:ems="10"
-                    android:gravity="start|top"
-                    android:hint="@string/event_description_regular"
-                    android:inputType="textMultiLine"
-                    android:textColorHint="@android:color/widget_edittext_dark"
-                    android:textSize="20sp" />
-
-                <TextView
-                    android:id="@+id/textView2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="36dp"
-                    android:layout_marginTop="36dp"
-                    android:layout_marginEnd="36dp"
-                    android:text="@string/regular_event_date_text" />
-
-                <EditText
-                    android:id="@+id/event_day"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="36dp"
-                    android:layout_marginEnd="36dp"
-                    android:autofillHints="@string/event_description_custom"
-                    android:ems="10"
-                    android:gravity="start|top"
-                    android:hint="@string/event_date_regular"
-                    android:inputType="textMultiLine"
-                    android:textColorHint="@android:color/widget_edittext_dark"
-                    android:textSize="20sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/custom_event"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:visibility="visible"
-                tools:visibility="visible">
-
-                <TextView
-                    android:id="@+id/textView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="36dp"
-                    android:layout_marginTop="36dp"
-                    android:layout_marginEnd="36dp"
-                    android:text="@string/event_description_custom_title" />
-
-                <EditText
-                    android:id="@+id/event_description_multi"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="36dp"
-                    android:layout_marginEnd="36dp"
-                    android:autofillHints="@string/event_description_custom"
-                    android:ems="10"
-                    android:gravity="start|top"
-                    android:hint="@string/event_description_custom"
-                    android:inputType="textMultiLine"
-                    android:textColorHint="@android:color/widget_edittext_dark"
-                    android:textSize="20sp" />
-            </LinearLayout>
-
-            <Button
-                android:id="@+id/button2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="36dp"
-                android:layout_marginTop="36dp"
-                android:layout_marginEnd="36dp"
-                android:onClick="previewEvent"
-                android:text="@string/preview_event_button" />
-
-            <TextView
-                android:id="@+id/event_preview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="36dp"
-                android:layout_marginEnd="36dp"
-                android:text="@string/event_preview" />
-
-            <LinearLayout
-                style="?android:attr/buttonBarStyle"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="36dp"
-                android:layout_marginTop="36dp"
-                android:layout_marginEnd="36dp"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/button3"
-                    style="?android:attr/buttonBarButtonStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:onClick="cancelCreateEvent"
-                    android:text="@string/button_cancel" />
-
-                <Button
-                    android:id="@+id/button"
-                    style="?android:attr/buttonBarButtonStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginEnd="36dp"
-                    android:onClick="submitEvent"
-                    android:text="@string/button_create_event_name" />
-            </LinearLayout>
-
-        </LinearLayout>
-    </ScrollView>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
-```
+   ```xml
+   <?xml version="1.0" encoding="utf-8"?>
+   <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+       xmlns:app="http://schemas.android.com/apk/res-auto"
+       xmlns:tools="http://schemas.android.com/tools"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:screenOrientation="portrait"
+       tools:context=".CreateEvent">
+   
+       <ScrollView
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintTop_toTopOf="parent">
+   
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:orientation="vertical"
+               android:visibility="visible"
+               tools:visibility="visible">
+   
+               <com.google.android.material.textfield.TextInputLayout
+                   android:id="@+id/textInputLayout"
+                   android:layout_width="335dp"
+                   android:layout_height="wrap_content"
+                   android:layout_marginStart="36dp"
+                   android:layout_marginTop="120dp">
+   
+                   <com.google.android.material.textfield.TextInputEditText
+                       android:id="@+id/event_name"
+                       android:layout_width="match_parent"
+                       android:layout_height="match_parent"
+                       android:background="#ffffff"
+                       android:hint="@string/new_event_input_name_text"
+                       android:inputType="text"
+                       android:maxLines="1"
+                       android:overScrollMode="always"
+                       android:scrollHorizontally="true"
+                       android:textSize="24sp" />
+               </com.google.android.material.textfield.TextInputLayout>
+   
+               <RadioGroup
+                   android:layout_width="wrap_content"
+                   android:layout_height="68dp"
+                   android:layout_marginStart="36dp"
+                   android:layout_marginTop="36dp"
+                   android:orientation="horizontal">
+   
+                   <RadioButton
+                       android:id="@+id/regular_event_radio"
+                       android:layout_width="wrap_content"
+                       android:layout_height="match_parent"
+                       android:checked="true"
+                       android:onClick="customEvent"
+                       android:text="@string/regular_event" />
+   
+                   <RadioButton
+                       android:id="@+id/custom_event_radio"
+                       android:layout_width="wrap_content"
+                       android:layout_height="match_parent"
+                       android:onClick="customEvent"
+                       android:text="@string/custom_event" />
+   
+               </RadioGroup>
+   
+               <LinearLayout
+                   android:id="@+id/regular_event"
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:orientation="vertical">
+   
+                   <TextView
+                       android:id="@+id/textView4"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:layout_marginStart="36dp"
+                       android:layout_marginTop="36dp"
+                       android:layout_marginEnd="36dp"
+                       android:text="@string/regular_event_description_text" />
+   
+                   <EditText
+                       android:id="@+id/event_description_multi_regular"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_marginStart="36dp"
+                       android:layout_marginEnd="36dp"
+                       android:autofillHints="@string/event_description_custom"
+                       android:ems="10"
+                       android:gravity="start|top"
+                       android:hint="@string/event_description_regular"
+                       android:inputType="textMultiLine"
+                       android:textColorHint="@android:color/widget_edittext_dark"
+                       android:textSize="20sp" />
+   
+                   <TextView
+                       android:id="@+id/textView2"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:layout_marginStart="36dp"
+                       android:layout_marginTop="36dp"
+                       android:layout_marginEnd="36dp"
+                       android:text="@string/regular_event_date_text" />
+   
+                   <EditText
+                       android:id="@+id/event_day"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_marginStart="36dp"
+                       android:layout_marginEnd="36dp"
+                       android:autofillHints="@string/event_description_custom"
+                       android:ems="10"
+                       android:gravity="start|top"
+                       android:hint="@string/event_date_regular"
+                       android:inputType="textMultiLine"
+                       android:textColorHint="@android:color/widget_edittext_dark"
+                       android:textSize="20sp" />
+               </LinearLayout>
+   
+               <LinearLayout
+                   android:id="@+id/custom_event"
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:orientation="vertical"
+                   android:visibility="visible"
+                   tools:visibility="visible">
+   
+                   <TextView
+                       android:id="@+id/textView"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_marginStart="36dp"
+                       android:layout_marginTop="36dp"
+                       android:layout_marginEnd="36dp"
+                       android:text="@string/event_description_custom_title" />
+   
+                   <EditText
+                       android:id="@+id/event_description_multi"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_marginStart="36dp"
+                       android:layout_marginEnd="36dp"
+                       android:autofillHints="@string/event_description_custom"
+                       android:ems="10"
+                       android:gravity="start|top"
+                       android:hint="@string/event_description_custom"
+                       android:inputType="textMultiLine"
+                       android:textColorHint="@android:color/widget_edittext_dark"
+                       android:textSize="20sp" />
+               </LinearLayout>
+   
+               <Button
+                   android:id="@+id/button2"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_marginStart="36dp"
+                   android:layout_marginTop="36dp"
+                   android:layout_marginEnd="36dp"
+                   android:onClick="previewEvent"
+                   android:text="@string/preview_event_button" />
+   
+               <TextView
+                   android:id="@+id/event_preview"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_marginStart="36dp"
+                   android:layout_marginEnd="36dp"
+                   android:text="@string/event_preview" />
+   
+               <LinearLayout
+                   style="?android:attr/buttonBarStyle"
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:layout_marginStart="36dp"
+                   android:layout_marginTop="36dp"
+                   android:layout_marginEnd="36dp"
+                   android:orientation="horizontal">
+   
+                   <Button
+                       android:id="@+id/button3"
+                       style="?android:attr/buttonBarButtonStyle"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:onClick="cancelCreateEvent"
+                       android:text="@string/button_cancel" />
+   
+                   <Button
+                       android:id="@+id/button"
+                       style="?android:attr/buttonBarButtonStyle"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_marginStart="5dp"
+                       android:layout_marginEnd="36dp"
+                       android:onClick="submitEvent"
+                       android:text="@string/button_create_event_name" />
+               </LinearLayout>
+   
+           </LinearLayout>
+       </ScrollView>
+   
+   </androidx.constraintlayout.widget.ConstraintLayout>
+   ```
+</details>
 
 - Finally for the `activity_email_clients.xml` file, the layout itself should look like the following image:
 
@@ -300,76 +310,81 @@ This project is an android based Java application that utilizes android studio, 
 
 - The `xml` for `activity_email_clients.xml` should be as follows:
 
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".EmailClients">
+<details>
+   <summary>activity_email_clients.xml code</summary>
+   <br>
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="104dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="36dp"
-            android:layout_marginEnd="36dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="36dp"
-                android:layout_marginTop="36dp"
-                android:layout_marginRight="36dp"
-                android:text="@string/email_text" />
-
-            <EditText
-                android:id="@+id/manyMailBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="36dp"
-                android:layout_marginTop="36dp"
-                android:layout_marginEnd="36dp"
-                android:autofillHints="@string/email_example_text"
-                android:ems="10"
-                android:gravity="start|top"
-                android:hint="@string/email_example_text"
-                android:inputType="textMultiLine"
-                android:textColorHint="#716F6F"
-                android:textSize="24sp" />
-
-            <Button
-                android:id="@+id/button4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="36dp"
-                android:layout_marginTop="36dp"
-                android:layout_marginEnd="36dp"
-                android:onClick="sendEmail"
-                android:text="@string/button_send_email_text" />
-
-            <Button
-                android:id="@+id/button5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="36dp"
-                android:layout_marginRight="36dp"
-                android:onClick="noEmails"
-                android:text="@string/button_cancel_emails_text" />
-
-        </LinearLayout>
-    </ScrollView>
-</androidx.constraintlayout.widget.ConstraintLayout>
-```
+   ```xml
+   <?xml version="1.0" encoding="utf-8"?>
+   <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+       xmlns:app="http://schemas.android.com/apk/res-auto"
+       xmlns:tools="http://schemas.android.com/tools"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       tools:context=".EmailClients">
+   
+       <ScrollView
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:layout_marginTop="104dp"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintTop_toTopOf="parent">
+   
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginStart="36dp"
+               android:layout_marginEnd="36dp"
+               android:orientation="vertical">
+   
+               <TextView
+                   android:id="@+id/textView3"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_marginLeft="36dp"
+                   android:layout_marginTop="36dp"
+                   android:layout_marginRight="36dp"
+                   android:text="@string/email_text" />
+   
+               <EditText
+                   android:id="@+id/manyMailBox"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_marginStart="36dp"
+                   android:layout_marginTop="36dp"
+                   android:layout_marginEnd="36dp"
+                   android:autofillHints="@string/email_example_text"
+                   android:ems="10"
+                   android:gravity="start|top"
+                   android:hint="@string/email_example_text"
+                   android:inputType="textMultiLine"
+                   android:textColorHint="#716F6F"
+                   android:textSize="24sp" />
+   
+               <Button
+                   android:id="@+id/button4"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_marginStart="36dp"
+                   android:layout_marginTop="36dp"
+                   android:layout_marginEnd="36dp"
+                   android:onClick="sendEmail"
+                   android:text="@string/button_send_email_text" />
+   
+               <Button
+                   android:id="@+id/button5"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_marginLeft="36dp"
+                   android:layout_marginRight="36dp"
+                   android:onClick="noEmails"
+                   android:text="@string/button_cancel_emails_text" />
+   
+           </LinearLayout>
+       </ScrollView>
+   </androidx.constraintlayout.widget.ConstraintLayout>
+   ```
+</details>
 
 3. **Implementing Program Base Functionality:**
 - Develop Java classes to handle reminder creation, editing, deletion, and retrieval.
