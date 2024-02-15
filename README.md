@@ -35,57 +35,57 @@ This project is an android based Java application that utilizes android studio, 
    <summary>main_activity.xml code</summary>
    <br>
    
-   ```xml
-   <?xml version="1.0" encoding="utf-8"?>
-   <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-       xmlns:app="http://schemas.android.com/apk/res-auto"
-       xmlns:tools="http://schemas.android.com/tools"
-       android:layout_width="match_parent"
-       android:layout_height="match_parent"
-       android:screenOrientation="portrait"
-       tools:context=".MainActivity">
-   
-       <com.google.android.material.floatingactionbutton.FloatingActionButton
-           android:id="@+id/floatingActionButton"
-           android:layout_width="wrap_content"
-           android:layout_height="109dp"
-           android:layout_marginEnd="48dp"
-           android:layout_marginBottom="48dp"
-           android:clickable="true"
-           android:contentDescription="@string/event_text"
-           android:focusable="true"
-           android:onClick="createEventClicked"
-           app:fabCustomSize="60dp"
-           app:fabSize="auto"
-           app:layout_constraintBottom_toBottomOf="parent"
-           app:layout_constraintEnd_toEndOf="parent"
-           app:maxImageSize="50dp"
-           app:shapeAppearanceOverlay="@style/fab_circle"
-           app:srcCompat="@android:drawable/ic_input_add" />
-   
-       <ScrollView
-           android:layout_width="0dp"
-           android:layout_height="0dp"
-           android:contentDescription="@string/first_fragment_label"
-           app:layout_constraintBottom_toBottomOf="parent"
-           app:layout_constraintEnd_toEndOf="parent"
-           app:layout_constraintHorizontal_bias="0.0"
-           app:layout_constraintStart_toStartOf="parent"
-           app:layout_constraintTop_toTopOf="parent"
-           app:layout_constraintVertical_bias="0.0">
-   
-           <LinearLayout
-               android:id="@+id/card_layout"
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:layout_marginStart="36dp"
-               android:layout_marginTop="100dp"
-               android:layout_marginEnd="36dp"
-               android:orientation="vertical" />
-       </ScrollView>
-   
-   </androidx.constraintlayout.widget.ConstraintLayout>
-   ```
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:screenOrientation="portrait"
+    tools:context=".MainActivity">
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="109dp"
+        android:layout_marginEnd="48dp"
+        android:layout_marginBottom="48dp"
+        android:clickable="true"
+        android:contentDescription="@string/event_text"
+        android:focusable="true"
+        android:onClick="createEventClicked"
+        app:fabCustomSize="60dp"
+        app:fabSize="auto"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:maxImageSize="50dp"
+        app:shapeAppearanceOverlay="@style/fab_circle"
+        app:srcCompat="@android:drawable/ic_input_add" />
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contentDescription="@string/first_fragment_label"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <LinearLayout
+            android:id="@+id/card_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="100dp"
+            android:layout_marginEnd="36dp"
+            android:orientation="vertical" />
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+```
 
 </details>
 
@@ -100,209 +100,209 @@ This project is an android based Java application that utilizes android studio, 
    <summary>activity_create_events.xml code</summary>
    <br>
 
-   ```xml
-   <?xml version="1.0" encoding="utf-8"?>
-   <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-       xmlns:app="http://schemas.android.com/apk/res-auto"
-       xmlns:tools="http://schemas.android.com/tools"
-       android:layout_width="match_parent"
-       android:layout_height="match_parent"
-       android:screenOrientation="portrait"
-       tools:context=".CreateEvent">
-   
-       <ScrollView
-           android:layout_width="match_parent"
-           android:layout_height="match_parent"
-           app:layout_constraintStart_toStartOf="parent"
-           app:layout_constraintTop_toTopOf="parent">
-   
-           <LinearLayout
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:orientation="vertical"
-               android:visibility="visible"
-               tools:visibility="visible">
-   
-               <com.google.android.material.textfield.TextInputLayout
-                   android:id="@+id/textInputLayout"
-                   android:layout_width="335dp"
-                   android:layout_height="wrap_content"
-                   android:layout_marginStart="36dp"
-                   android:layout_marginTop="120dp">
-   
-                   <com.google.android.material.textfield.TextInputEditText
-                       android:id="@+id/event_name"
-                       android:layout_width="match_parent"
-                       android:layout_height="match_parent"
-                       android:background="#ffffff"
-                       android:hint="@string/new_event_input_name_text"
-                       android:inputType="text"
-                       android:maxLines="1"
-                       android:overScrollMode="always"
-                       android:scrollHorizontally="true"
-                       android:textSize="24sp" />
-               </com.google.android.material.textfield.TextInputLayout>
-   
-               <RadioGroup
-                   android:layout_width="wrap_content"
-                   android:layout_height="68dp"
-                   android:layout_marginStart="36dp"
-                   android:layout_marginTop="36dp"
-                   android:orientation="horizontal">
-   
-                   <RadioButton
-                       android:id="@+id/regular_event_radio"
-                       android:layout_width="wrap_content"
-                       android:layout_height="match_parent"
-                       android:checked="true"
-                       android:onClick="customEvent"
-                       android:text="@string/regular_event" />
-   
-                   <RadioButton
-                       android:id="@+id/custom_event_radio"
-                       android:layout_width="wrap_content"
-                       android:layout_height="match_parent"
-                       android:onClick="customEvent"
-                       android:text="@string/custom_event" />
-   
-               </RadioGroup>
-   
-               <LinearLayout
-                   android:id="@+id/regular_event"
-                   android:layout_width="match_parent"
-                   android:layout_height="match_parent"
-                   android:orientation="vertical">
-   
-                   <TextView
-                       android:id="@+id/textView4"
-                       android:layout_width="match_parent"
-                       android:layout_height="wrap_content"
-                       android:layout_marginStart="36dp"
-                       android:layout_marginTop="36dp"
-                       android:layout_marginEnd="36dp"
-                       android:text="@string/regular_event_description_text" />
-   
-                   <EditText
-                       android:id="@+id/event_description_multi_regular"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:layout_marginStart="36dp"
-                       android:layout_marginEnd="36dp"
-                       android:autofillHints="@string/event_description_custom"
-                       android:ems="10"
-                       android:gravity="start|top"
-                       android:hint="@string/event_description_regular"
-                       android:inputType="textMultiLine"
-                       android:textColorHint="@android:color/widget_edittext_dark"
-                       android:textSize="20sp" />
-   
-                   <TextView
-                       android:id="@+id/textView2"
-                       android:layout_width="match_parent"
-                       android:layout_height="wrap_content"
-                       android:layout_marginStart="36dp"
-                       android:layout_marginTop="36dp"
-                       android:layout_marginEnd="36dp"
-                       android:text="@string/regular_event_date_text" />
-   
-                   <EditText
-                       android:id="@+id/event_day"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:layout_marginStart="36dp"
-                       android:layout_marginEnd="36dp"
-                       android:autofillHints="@string/event_description_custom"
-                       android:ems="10"
-                       android:gravity="start|top"
-                       android:hint="@string/event_date_regular"
-                       android:inputType="textMultiLine"
-                       android:textColorHint="@android:color/widget_edittext_dark"
-                       android:textSize="20sp" />
-               </LinearLayout>
-   
-               <LinearLayout
-                   android:id="@+id/custom_event"
-                   android:layout_width="match_parent"
-                   android:layout_height="match_parent"
-                   android:orientation="vertical"
-                   android:visibility="visible"
-                   tools:visibility="visible">
-   
-                   <TextView
-                       android:id="@+id/textView"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:layout_marginStart="36dp"
-                       android:layout_marginTop="36dp"
-                       android:layout_marginEnd="36dp"
-                       android:text="@string/event_description_custom_title" />
-   
-                   <EditText
-                       android:id="@+id/event_description_multi"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:layout_marginStart="36dp"
-                       android:layout_marginEnd="36dp"
-                       android:autofillHints="@string/event_description_custom"
-                       android:ems="10"
-                       android:gravity="start|top"
-                       android:hint="@string/event_description_custom"
-                       android:inputType="textMultiLine"
-                       android:textColorHint="@android:color/widget_edittext_dark"
-                       android:textSize="20sp" />
-               </LinearLayout>
-   
-               <Button
-                   android:id="@+id/button2"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:layout_marginStart="36dp"
-                   android:layout_marginTop="36dp"
-                   android:layout_marginEnd="36dp"
-                   android:onClick="previewEvent"
-                   android:text="@string/preview_event_button" />
-   
-               <TextView
-                   android:id="@+id/event_preview"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:layout_marginStart="36dp"
-                   android:layout_marginEnd="36dp"
-                   android:text="@string/event_preview" />
-   
-               <LinearLayout
-                   style="?android:attr/buttonBarStyle"
-                   android:layout_width="match_parent"
-                   android:layout_height="match_parent"
-                   android:layout_marginStart="36dp"
-                   android:layout_marginTop="36dp"
-                   android:layout_marginEnd="36dp"
-                   android:orientation="horizontal">
-   
-                   <Button
-                       android:id="@+id/button3"
-                       style="?android:attr/buttonBarButtonStyle"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:onClick="cancelCreateEvent"
-                       android:text="@string/button_cancel" />
-   
-                   <Button
-                       android:id="@+id/button"
-                       style="?android:attr/buttonBarButtonStyle"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:layout_marginStart="5dp"
-                       android:layout_marginEnd="36dp"
-                       android:onClick="submitEvent"
-                       android:text="@string/button_create_event_name" />
-               </LinearLayout>
-   
-           </LinearLayout>
-       </ScrollView>
-   
-   </androidx.constraintlayout.widget.ConstraintLayout>
-   ```
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:screenOrientation="portrait"
+    tools:context=".CreateEvent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="visible"
+            tools:visibility="visible">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout"
+                android:layout_width="335dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="36dp"
+                android:layout_marginTop="120dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/event_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#ffffff"
+                    android:hint="@string/new_event_input_name_text"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:overScrollMode="always"
+                    android:scrollHorizontally="true"
+                    android:textSize="24sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="68dp"
+                android:layout_marginStart="36dp"
+                android:layout_marginTop="36dp"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/regular_event_radio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:checked="true"
+                    android:onClick="customEvent"
+                    android:text="@string/regular_event" />
+
+                <RadioButton
+                    android:id="@+id/custom_event_radio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:onClick="customEvent"
+                    android:text="@string/custom_event" />
+
+            </RadioGroup>
+
+            <LinearLayout
+                android:id="@+id/regular_event"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="36dp"
+                    android:layout_marginTop="36dp"
+                    android:layout_marginEnd="36dp"
+                    android:text="@string/regular_event_description_text" />
+
+                <EditText
+                    android:id="@+id/event_description_multi_regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="36dp"
+                    android:layout_marginEnd="36dp"
+                    android:autofillHints="@string/event_description_custom"
+                    android:ems="10"
+                    android:gravity="start|top"
+                    android:hint="@string/event_description_regular"
+                    android:inputType="textMultiLine"
+                    android:textColorHint="@android:color/widget_edittext_dark"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="36dp"
+                    android:layout_marginTop="36dp"
+                    android:layout_marginEnd="36dp"
+                    android:text="@string/regular_event_date_text" />
+
+                <EditText
+                    android:id="@+id/event_day"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="36dp"
+                    android:layout_marginEnd="36dp"
+                    android:autofillHints="@string/event_description_custom"
+                    android:ems="10"
+                    android:gravity="start|top"
+                    android:hint="@string/event_date_regular"
+                    android:inputType="textMultiLine"
+                    android:textColorHint="@android:color/widget_edittext_dark"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/custom_event"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:visibility="visible"
+                tools:visibility="visible">
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="36dp"
+                    android:layout_marginTop="36dp"
+                    android:layout_marginEnd="36dp"
+                    android:text="@string/event_description_custom_title" />
+
+                <EditText
+                    android:id="@+id/event_description_multi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="36dp"
+                    android:layout_marginEnd="36dp"
+                    android:autofillHints="@string/event_description_custom"
+                    android:ems="10"
+                    android:gravity="start|top"
+                    android:hint="@string/event_description_custom"
+                    android:inputType="textMultiLine"
+                    android:textColorHint="@android:color/widget_edittext_dark"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="36dp"
+                android:layout_marginTop="36dp"
+                android:layout_marginEnd="36dp"
+                android:onClick="previewEvent"
+                android:text="@string/preview_event_button" />
+
+            <TextView
+                android:id="@+id/event_preview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="36dp"
+                android:layout_marginEnd="36dp"
+                android:text="@string/event_preview" />
+
+            <LinearLayout
+                style="?android:attr/buttonBarStyle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="36dp"
+                android:layout_marginTop="36dp"
+                android:layout_marginEnd="36dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/button3"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="cancelCreateEvent"
+                    android:text="@string/button_cancel" />
+
+                <Button
+                    android:id="@+id/button"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="36dp"
+                    android:onClick="submitEvent"
+                    android:text="@string/button_create_event_name" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+```
 
 </details>
 
