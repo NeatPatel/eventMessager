@@ -33,7 +33,6 @@ This project is an android based Java application that utilizes android studio, 
 
 <details>
    <summary>main_activity.xml code</summary>
-   <br>
    
 ```xml
 
