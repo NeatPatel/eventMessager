@@ -36,6 +36,7 @@ This project is an android based Java application that utilizes android studio, 
    <br>
    
 ```xml
+
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -85,9 +86,11 @@ This project is an android based Java application that utilizes android studio, 
     </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
 ```
 
 </details>
+
 
 - Notice the pattern of using "36dp" for margins. It is good practice to be consistent with margins through the application for even spacing between views.
 - For the `activity_create_events.xml` file, add views (where views are items in the application that can be interacted with by the users) that match the following image:
