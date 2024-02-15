@@ -86,6 +86,7 @@ This project is an android based Java application that utilizes android studio, 
    
    </androidx.constraintlayout.widget.ConstraintLayout>
    ```
+
 </details>
 
 - Notice the pattern of using "36dp" for margins. It is good practice to be consistent with margins through the application for even spacing between views.
@@ -302,6 +303,7 @@ This project is an android based Java application that utilizes android studio, 
    
    </androidx.constraintlayout.widget.ConstraintLayout>
    ```
+
 </details>
 
 - Finally for the `activity_email_clients.xml` file, the layout itself should look like the following image:
@@ -384,6 +386,7 @@ This project is an android based Java application that utilizes android studio, 
        </ScrollView>
    </androidx.constraintlayout.widget.ConstraintLayout>
    ```
+
 </details>
 
 3. **Implementing Program Base Functionality:**
