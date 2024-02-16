@@ -382,7 +382,7 @@ This project is an android based Java application that utilizes android studio, 
 
 - Here is the code for the first class `MainActivity.java`:
    
-   ```java
+```java
 package com.example.eventmanager;
 
 import androidx.appcompat.app.AlertDialog;
@@ -536,11 +536,11 @@ public class MainActivity extends AppCompatActivity {
                 .setNegativeButton("Cancel", dialogClickListener).show();
     }
 }
-   ```
+```
 
 - The code for `CreateEvent.java` is as follows:
 
-   ```java
+```java
 package com.example.eventmanager;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -705,7 +705,7 @@ public class CreateEvent extends AppCompatActivity {
         startActivity(mainActivity);
     }
 }
-   ```
+```
 
 - With these steps complete, the only parts remaining for the project are email plugins for communication and a database to store events
 
@@ -714,7 +714,7 @@ public class CreateEvent extends AppCompatActivity {
 - `EmailClients.java` uses an Intent with a destination called "Send mail..." to send emails or other forms of messages to recipients that the user desires to send them to.
 - The code for `EmailClients.java` is as follows:
 
-   ```java
+```java
 package com.example.eventmanager;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -796,7 +796,7 @@ public class EmailClients extends AppCompatActivity {
 - This Event app is a small scale event based reminder app that will mainly only require a small maintainable database to store the data for future use, so a perfect plugin to use for this project is sqlite. Sqlite in android studio requires specific class inherited and interface methods in order to execute so that its SqliteOpenHelper class can be extended and used properly.
 - To create a database, add a file called `EventDataBase.java`, and add the following code to it:
 
-   ```java
+```java
 package com.example.eventmanager;
 
 import android.content.ContentValues;
@@ -885,7 +885,7 @@ public class EventDataBase extends SQLiteOpenHelper {
         return events;
     }
 }
-   ```
+```
 
 6. **Documentation and Deployment:**
 - This is all of the content required for the implementation of the Event Manager application, and any further additions can be done so by modifying the program according to the way that it was written.
