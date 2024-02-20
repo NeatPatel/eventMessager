@@ -96,6 +96,9 @@ This project is an android based Java application that utilizes android studio, 
 
 - The `xml` for this file should be as follows:
 
+<details markdown="1">
+   <summary>[click me activity_create_events.xml code]</summary>
+   
 ```
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -299,12 +302,17 @@ This project is an android based Java application that utilizes android studio, 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 ```
+</details>
+<br>
 
 - Finally for the `activity_email_clients.xml` file, the layout itself should look like the following image:
 
 ![](https://github.com/NeatPatel/eventMessager/blob/main/src/images/emailClientsXml.png?raw=true)
 
 - The `xml` for `activity_email_clients.xml` should be as follows:
+
+<details>
+   <summary>[click me activity_email_clients.xml code]</summary>
 
    ```xml
    <?xml version="1.0" encoding="utf-8"?>
@@ -376,6 +384,8 @@ This project is an android based Java application that utilizes android studio, 
        </ScrollView>
    </androidx.constraintlayout.widget.ConstraintLayout>
    ```
+</details>
+<br>
 
 #### 3. Implementing Program Base Functionality:
 - The functionality of the application itself will depend on three Java classes: `MainActivity.java`, `CreateEvent.java`, and `EmailClients.java`. Each of these classes corresponds an xml file that was create previously, such as how `activity_main.xml` corresponds to `MainActivity.java`.
@@ -386,7 +396,10 @@ This project is an android based Java application that utilizes android studio, 
 ![](https://github.com/NeatPatel/eventMessager/blob/main/src/images/javaClassNames.png?raw=true)
 
 - Here is the code for the first class `MainActivity.java`:
-   
+
+<details markdown="1">
+   <summary>[click me MainActivity.java code]</summary>
+
 ```java
 package com.example.eventmanager;
 
@@ -542,8 +555,13 @@ public class MainActivity extends AppCompatActivity {
     }
 }
 ```
+</details>
+<br>
 
 - The code for `CreateEvent.java` is as follows:
+
+<details markdown="1">
+   <summary>[click me CreateEvent.java code]</summary>
 
 ```java
 package com.example.eventmanager;
@@ -711,6 +729,8 @@ public class CreateEvent extends AppCompatActivity {
     }
 }
 ```
+</details>
+<br>
 
 - With these steps complete, the only parts remaining for the project are email plugins for communication and a database to store events
 
@@ -718,6 +738,9 @@ public class CreateEvent extends AppCompatActivity {
 - For this step, `EmailClients.java` is needed in order to send out emails or texts to any recipients of the event that the user would like to notify.
 - `EmailClients.java` uses an Intent with a destination called "Send mail..." to send emails or other forms of messages to recipients that the user desires to send them to.
 - The code for `EmailClients.java` is as follows:
+
+<details markdown="1">
+   <summary>[click me EmailClients.java code]</summary>
 
 ```java
 package com.example.eventmanager;
@@ -796,10 +819,15 @@ public class EmailClients extends AppCompatActivity {
     }
 }
 ```
+</details>
+<br>
 
 5. #### Database Setup:
 - This Event app is a small scale event based reminder app that will mainly only require a small maintainable database to store the data for future use, so a perfect plugin to use for this project is sqlite. Sqlite in android studio requires specific class inherited and interface methods in order to execute so that its SqliteOpenHelper class can be extended and used properly.
 - To create a database, add a file called `EventDataBase.java`, and add the following code to it:
+
+<details markdown="1">
+   <summary>[click me EventDataBase.java code]</summary>
 
 ```java
 package com.example.eventmanager;
@@ -891,6 +919,8 @@ public class EventDataBase extends SQLiteOpenHelper {
     }
 }
 ```
+</details>
+<br>
 
 6. #### Documentation and Deployment:
 - This is all of the content required for the implementation of the Event Manager application, and any further additions can be done so by modifying the program according to the way that it was written.
