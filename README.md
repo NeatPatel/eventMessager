@@ -3,14 +3,14 @@ This project is an android based Java application that utilizes android studio, 
 
 ### Steps to Create this App:
 
-1. **Setting Up Environment:**
+#### 1. Setting Up Environment:
 - Install Android Studio on your development machine.
 - Ensure JDK (Java Development Kit) is properly configured.
 - Create a new Android project in Android Studio. At the create project menu, be sure to select Empty Views Activity:
 
    ![](https://github.com/NeatPatel/eventMessager/blob/main/src/images/emptyViews.png?raw=true)
 
-2. **Designing User Interface (UI):**
+#### 2. Designing User Interface (UI):
 - The UI is designed using `xml` files for each activity, where an activity is a page of the application, similar to how html websites have different html files for each page site. Create three of these xml files:
   - The first file is for the main page that will show the previously created events, and a FAB button (in the bottom right corner) for creating new events. Call this file `activity_main.xml`
    - The second xml file will be for actually creating an event, prompting the user to fill out a form-like structured event with the option to customize the type of event they would like to create. This file will be called `activity_create_event.xml`
@@ -370,7 +370,7 @@ This project is an android based Java application that utilizes android studio, 
    </androidx.constraintlayout.widget.ConstraintLayout>
    ```
 
-3. **Implementing Program Base Functionality:**
+#### 3. Implementing Program Base Functionality:
 - The functionality of the application itself will depend on three Java classes: `MainActivity.java`, `CreateEvent.java`, and `EmailClients.java`. Each of these classes corresponds an xml file that was create previously, such as how `activity_main.xml` corresponds to `MainActivity.java`.
    - `MainActivity.java` needs to display all events in the database and have a listener function (created in the xml) that watches for the Create Event FAB button being pressed, taking the user to the next activity via an Intent.
    - `CreateEvent.java` is the second class (which `MainActivity.java` will redirect to after pressing FAB) and consists of a lot of views, with each component collecting data or showing previews to the user. The only way to create a new event is if all of the required fields have been filled out, such as the "Event Name" and "Event Description" for custom events. After creating an event, an Intent will be used to redirect the user to the third class' activity.
@@ -707,7 +707,7 @@ public class CreateEvent extends AppCompatActivity {
 
 - With these steps complete, the only parts remaining for the project are email plugins for communication and a database to store events
 
-4. **Adding Communication Options:**
+#### 4. Adding Communication Options:
 - For this step, `EmailClients.java` is needed in order to send out emails or texts to any recipients of the event that the user would like to notify.
 - `EmailClients.java` uses an Intent with a destination called "Send mail..." to send emails or other forms of messages to recipients that the user desires to send them to.
 - The code for `EmailClients.java` is as follows:
@@ -790,7 +790,7 @@ public class EmailClients extends AppCompatActivity {
 }
 ```
 
-5. **Database Setup:**
+#### 5. Database Setup:
 - This Event app is a small scale event based reminder app that will mainly only require a small maintainable database to store the data for future use, so a perfect plugin to use for this project is sqlite. Sqlite in android studio requires specific class inherited and interface methods in order to execute so that its SqliteOpenHelper class can be extended and used properly.
 - To create a database, add a file called `EventDataBase.java`, and add the following code to it:
 
@@ -885,7 +885,7 @@ public class EventDataBase extends SQLiteOpenHelper {
 }
 ```
 
-6. **Documentation and Deployment:**
+#### 6. Documentation and Deployment:
 - This is all of the content required for the implementation of the Event Manager application, and any further additions can be done so by modifying the program according to the way that it was written.
 
 ### More information
