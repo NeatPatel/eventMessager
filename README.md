@@ -87,6 +87,7 @@ This project is an android based Java application that utilizes android studio, 
       </androidx.constraintlayout.widget.ConstraintLayout>
    ```
 </details>
+<br>
 
 - Notice the pattern of using "36dp" for margins. It is good practice to be consistent with margins through the application for even spacing between views.
 - For the `activity_create_events.xml` file, add views (where views are items in the application that can be interacted with by the users) that match the following image:
