@@ -1,4 +1,3 @@
-[Back to Main Page](https://neatpatel.github.io)
 # Event Messager Project Blog
 This project is an android based Java application that utilizes android studio, email plugins, and sqlite3 as the database to hold reminders for later. The project itself is a reminder app that can be used to create events that can be sent to anyone via email, text, whatsapp, copy paste, or any other form of text communication available as an app on one's phone. 
 
