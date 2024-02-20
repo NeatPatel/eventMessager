@@ -32,6 +32,7 @@ This project is an android based Java application that utilizes android studio, 
 
 <details markdown="1">
    <summary>main_activity.xml code</summary>
+   <br>
 
 ```xml   
    <?xml version="1.0" encoding="utf-8"?>
