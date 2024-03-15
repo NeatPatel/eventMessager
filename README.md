@@ -1,4 +1,4 @@
-This project is an android based Java application that utilizes android studio, email plugins, and sqlite3 as the database to hold reminders for later. The project itself is a reminder app that can be used to create events that can be sent to anyone via email, text, whatsapp, copy paste, or any other form of text communication available as an app on one's phone. 
+This project is an android based Java application that utilizes android studio, email plugins, and SQLite3 as the database to hold reminders for later. The project itself is a reminder app that can be used to create events that can be sent to anyone via email, text, whatsapp, copy paste, or any other form of text communication available as an app on one's phone. 
 
 ### Steps to Create this App:
 
@@ -11,7 +11,7 @@ This project is an android based Java application that utilizes android studio, 
 
 #### 2. Designing User Interface (UI):
 - The UI is designed using `xml` files for each activity, where an activity is a page of the application, similar to how html websites have different html files for each page site. Create three of these xml files:
-  - The first file is for the main page that will show the previously created events, and a FAB button (in the bottom right corner) for creating new events. Call this file `activity_main.xml`
+  - The first file is for the main page that will show the previously created events, and a FAB (Floating Action Button) in the bottom right corner for creating new events. Call this file `activity_main.xml`
    - The second xml file will be for actually creating an event, prompting the user to fill out a form-like structured event with the option to customize the type of event they would like to create. This file will be called `activity_create_event.xml`
    - The third xml will be for sending emails or notifications to others about this event, allowing the user to select "Done" when they have sent all the messages they desire. Call this file `activity_email_clients.xml`
 
@@ -31,7 +31,7 @@ This project is an android based Java application that utilizes android studio, 
 
 <details markdown="1">
    <summary>
-      [click me main_activity.xml code]
+      [click me for main_activity.xml code]
    </summary>
 
    ```xml   
@@ -96,7 +96,7 @@ This project is an android based Java application that utilizes android studio, 
 - The `xml` for this file should be as follows:
 
 <details markdown="1">
-   <summary>[click me activity_create_events.xml code]</summary>
+   <summary>[click me for activity_create_events.xml code]</summary>
    
 ```
 <?xml version="1.0" encoding="utf-8"?>
@@ -311,7 +311,7 @@ This project is an android based Java application that utilizes android studio, 
 - The `xml` for `activity_email_clients.xml` should be as follows:
 
 <details markdown="1">
-   <summary>[click me activity_email_clients.xml code]</summary>
+   <summary>[click me for activity_email_clients.xml code]</summary>
 
    ```xml
    <?xml version="1.0" encoding="utf-8"?>
@@ -397,7 +397,7 @@ This project is an android based Java application that utilizes android studio, 
 - Here is the code for the first class `MainActivity.java`:
 
 <details markdown="1">
-   <summary>[click me MainActivity.java code]</summary>
+   <summary>[click me for MainActivity.java code]</summary>
 
 ```java
 package com.example.eventmanager;
@@ -560,7 +560,7 @@ public class MainActivity extends AppCompatActivity {
 - The code for `CreateEvent.java` is as follows:
 
 <details markdown="1">
-   <summary>[click me CreateEvent.java code]</summary>
+   <summary>[click me for CreateEvent.java code]</summary>
 
 ```java
 package com.example.eventmanager;
@@ -739,7 +739,7 @@ public class CreateEvent extends AppCompatActivity {
 - The code for `EmailClients.java` is as follows:
 
 <details markdown="1">
-   <summary>[click me EmailClients.java code]</summary>
+   <summary>[click me for EmailClients.java code]</summary>
 
 ```java
 package com.example.eventmanager;
@@ -826,7 +826,7 @@ public class EmailClients extends AppCompatActivity {
 - To create a database, add a file called `EventDataBase.java`, and add the following code to it:
 
 <details markdown="1">
-   <summary>[click me EventDataBase.java code]</summary>
+   <summary>[click me for EventDataBase.java code]</summary>
 
 ```java
 package com.example.eventmanager;
