@@ -1,4 +1,4 @@
-This project is an android based Java application that utilizes android studio, email plugins, and SQLite3 as the database to hold reminders for later. The project itself is a reminder app that can be used to create events that can be sent to anyone via email, text, whatsapp, copy paste, or any other form of text communication available as an app on one's phone. 
+This project is an android based Java application that utilizes Android Studio, email plugins, and SQLite3 as the database to hold reminders for later. The project itself is a reminder app that can be used to create events that can be sent to anyone via email, text, WhatsApp, copy paste, or any other form of text communication available as an app on one's phone. 
 
 ### Steps to Create this App:
 
@@ -10,14 +10,14 @@ This project is an android based Java application that utilizes android studio, 
    ![](https://github.com/NeatPatel/eventMessager/blob/main/src/images/emptyViews.png?raw=true)
 
 #### 2. Designing User Interface (UI):
-- The UI is designed using `xml` files for each activity, where an activity is a page of the application, similar to how html websites have different html files for each page site. Create three of these xml files:
+- The UI is designed using `xml` files for each activity, where an activity is a page of the application, similar to how HTML websites have different HTML files for each page site. Create three of these xml files:
   - The first file is for the main page that will show the previously created events, and a FAB (Floating Action Button) in the bottom right corner for creating new events. Call this file `activity_main.xml`
    - The second xml file will be for actually creating an event, prompting the user to fill out a form-like structured event with the option to customize the type of event they would like to create. This file will be called `activity_create_event.xml`
    - The third xml will be for sending emails or notifications to others about this event, allowing the user to select "Done" when they have sent all the messages they desire. Call this file `activity_email_clients.xml`
 
 ![](https://github.com/NeatPatel/eventMessager/blob/main/src/images/xmlFiles.png?raw=true)
 
-- Before creating the initial UI, it is good practice to store all of the strings that will be hardcoded into the UI (such as text that says "Add new event") into a file known as `strings.xml`. This file should be under the `values` folder in the android studio application, but if not then create a file called `strings.xml` under the `values` directory. This would then be next to the `colors.xml` and `activity_decoration.xml` files. Here is an image of the types of strings and IDs associated with the xml strings that will be used later in this project:
+- Before creating the initial UI, it is good practice to store all of the strings that will be hardcoded into the UI (such as text that says "Add new event") into a file known as `strings.xml`. This file should be under the `values` folder in the Android Studio application, but if not then create a file called `strings.xml` under the `values` directory. This would then be next to the `colors.xml` and `activity_decoration.xml` files. Here is an image of the types of strings and IDs associated with the xml strings that will be used later in this project:
 
 ![](https://github.com/NeatPatel/eventMessager/blob/main/src/images/stringFile.png?raw=true)
 
@@ -822,7 +822,7 @@ public class EmailClients extends AppCompatActivity {
 <br>
 
 #### 5. Database Setup:
-- This Event app is a small scale event based reminder app that will mainly only require a small maintainable database to store the data for future use, so a perfect plugin to use for this project is sqlite. Sqlite in android studio requires specific class inherited and interface methods in order to execute so that its SqliteOpenHelper class can be extended and used properly.
+- This Event app is a small scale event based reminder app that will mainly only require a small maintainable database to store the data for future use, so a perfect plugin to use for this project is SQLite. SQLite in Android Studio requires specific class inherited and interface methods in order to execute so that its SqliteOpenHelper class can be extended and used properly.
 - To create a database, add a file called `EventDataBase.java`, and add the following code to it:
 
 <details markdown="1">
